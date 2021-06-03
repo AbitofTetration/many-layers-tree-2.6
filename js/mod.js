@@ -1,7 +1,7 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
+	name: "The Many Layers Tree",
+	id: "manylayers26",
+	author: "Despacit2p0",
 	pointsName: "points",
 	discordName: "",
 	discordLink: "",
@@ -12,14 +12,11 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.0.1",
+	name: "A Minor Update(?)",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+let changelog = `<h1>Time to never use this lol</h1>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -33,7 +30,7 @@ function getStartPoints(){
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	return hasUpgrade("p", 11)
 }
 
 // Calculate points/sec!
@@ -42,6 +39,12 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade("p", 12)) gain = gain.times(upgradeEffect("p", 12))
+	if (hasUpgrade("p", 13)) gain = gain.times(upgradeEffect("p", 13))
+	if (hasUpgrade("p", 21)) gain = gain.times(upgradeEffect("p", 21))
+	if (hasUpgrade("p", 23)) gain = gain.times(upgradeEffect("p", 23))
+	if (hasUpgrade("e", 11)) gain = gain.times(upgradeEffect("e", 11))
+	if (player.b.unlocked) gain = gain.times(tmp.b.powerEff)
 	return gain
 }
 
@@ -55,7 +58,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return false
 }
 
 
